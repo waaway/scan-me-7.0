@@ -38,7 +38,7 @@ export default function TvPage() {
         const data = await res.json();
         if (data.length > 0) setMediaQueue(data);
       }
-    }, 1000);
+    }, 500);
     return () => clearInterval(interval);
   }, [currentMedia]);
 
@@ -49,7 +49,7 @@ export default function TvPage() {
         const data = await res.json();
         if (data.length > 0) setTipQueue(data);
       }
-    }, 1000);
+    }, 500);
     return () => clearInterval(interval);
   }, [currentTip]);
 
