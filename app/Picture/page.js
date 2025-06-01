@@ -2,11 +2,11 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../styles/Picture.module.css';
-import { IoIosArrowRoundBack } from 'react-icons/io';
+import { IoIosArrowRoundBack } from "react-icons/io";
 import Cropper from 'react-easy-crop';
 import getCroppedImg from './cropImage';
 import imageCompression from 'browser-image-compression';
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram } from "react-icons/fa";
 
 const timeOptions = [
   { time: 15, price: 49 },
@@ -106,66 +106,61 @@ export default function PicturePage() {
   }, [imageSrc, croppedAreaPixels]);
 
   const handleSendToTV = async () => {
-    if (!croppedImage) {
-      alert('❌ กรุณาครอบรูปภาพก่อน');
-      return;
+  if (!croppedImage) {
+    alert('❌ กรุณาครอบรูปภาพก่อน');
+    return;
+  }
+  if (selectedTime === null) {
+    alert('❌ กรุณาเลือกเวลาที่ต้องการแสดงรูป');
+    return;
+  }
+  if (!selectedCaption) {
+    alert('❌ กรุณาเลือกข้อความแคปชั่น');
+    return;
+  }
+  if (!igName.trim()) {
+    alert('กรุณาใส่ชื่อ Instagram');
+    return;
+  }
+
+  try {
+    // ✅ เปลี่ยนเป็น FormData เพื่อส่งไฟล์ base64 เป็น Blob
+    const blob = await (await fetch(croppedImage)).blob();
+    const file = new File([blob], 'image.png', { type: blob.type });
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const uploadRes = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData
+    });
+
+    const { path } = await uploadRes.json();
+
+    const res = await fetch('/api/send-to-queue', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'image',
+        filePath: path,
+        caption: selectedCaption,
+        igName,
+        duration: selectedTime,
+      })
+    });
+
+    if (res.ok) {
+      alert('✅ ส่งรูปภาพไปยัง TV สำเร็จแล้ว!');
+    } else {
+      alert('❌ การส่งล้มเหลว');
     }
-    if (selectedTime === null) {
-      alert('❌ กรุณาเลือกเวลาที่ต้องการแสดงรูป');
-      return;
-    }
-    if (!selectedCaption) {
-      alert('❌ กรุณาเลือกข้อความแคปชั่น');
-      return;
-    }
-    if (!igName.trim()) {
-      alert('กรุณาใส่ชื่อ Instagram');
-      return;
-    }
+  } catch (err) {
+    console.error('[ERROR] ส่งรูปภาพ:', err);
+    alert('❌ เกิดข้อผิดพลาดในการส่งรูปภาพ');
+  }
+};
 
-    try {
-      const blob = await (await fetch(croppedImage)).blob();
-      const file = new File([blob], 'image.png', { type: blob.type });
-
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const uploadRes = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!uploadRes.ok) {
-        throw new Error('Upload failed');
-      }
-
-      const { path } = await uploadRes.json();
-      if (!path) {
-        throw new Error('No path returned from upload API');
-      }
-
-      const res = await fetch('/api/send-to-queue', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'image',
-          filePath: path,
-          caption: selectedCaption,
-          igName,
-          duration: selectedTime,
-        }),
-      });
-
-      if (res.ok) {
-        alert('✅ ส่งรูปภาพไปยัง TV สำเร็จแล้ว!');
-      } else {
-        throw new Error('Queue send failed');
-      }
-    } catch (err) {
-      console.error('[ERROR] ส่งรูปภาพ:', err);
-      alert('❌ เกิดข้อผิดพลาด: ' + err.message);
-    }
-  };
 
   return (
     <div className={styles.container} style={{ overflow: 'hidden' }}>
@@ -230,18 +225,14 @@ export default function PicturePage() {
             />
           </div>
 
-          <select
+          <select 
             value={selectedCaption}
             onChange={(e) => setSelectedCaption(e.target.value)}
             className={styles.captionSelect}
           >
-            <option value="" disabled hidden>
-              เลือกข้อความ
-            </option>
+            <option value="" disabled hidden>เลือกข้อความ</option>
             {captions.map((cap, idx) => (
-              <option key={idx} value={cap}>
-                {cap}
-              </option>
+              <option key={idx} value={cap}>{cap}</option>
             ))}
           </select>
 
