@@ -11,8 +11,10 @@ export async function POST(req) {
   }
 
   const blob = await put(file.name, file, {
-    access: 'public', // ให้คนอื่นเข้าถึง URL นี้ได้ (แสดงบน TV ได้)
-  });
+  access: 'public',
+  token: process.env.BLOB_READ_WRITE_TOKEN,
+});
+
 
   return NextResponse.json({ path: blob.url }); // ส่งกลับ URL ที่ใช้โชว์ไฟล์
 }
