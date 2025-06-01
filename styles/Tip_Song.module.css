@@ -1,0 +1,87 @@
+.container {
+  background: linear-gradient(135deg, #0b0014, #1a002a);
+  color: white;
+  min-height: 100vh;
+  padding: 24px;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backButton {
+  font-size: 36px;
+  background: none;
+  border: none;
+  color: #00ffff;
+  align-self: flex-start;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff88;
+  margin-bottom: 30px;
+}
+
+.amountInput {
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 20px;
+  background-color: #222;
+  color: white;
+  box-shadow: 0 0 10px #00ffff88;
+}
+
+.messageBox {
+  width: 100%;
+  max-width: 320px;
+  height: 120px;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  resize: none;
+  font-size: 1rem;
+  background-color: #1a1a1a;
+  color: white;
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px #8c52ff66;
+}
+
+.tipButton {
+  background-color: #00ffff;
+  color: black;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 30px;
+  cursor: pointer;
+  box-shadow: 0 0 20px #00ffffaa, 0 0 40px #00ffff33;
+  transition: transform 0.2s ease-in-out;
+}
+
+.tipButton:hover {
+  transform: scale(1.05);
+  background-color: #00e6f6;
+}
+.nameInput {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 20px;
+  background-color: #222;
+  color: white;
+  box-shadow: 0 0 10px #8c52ff55;
+}

@@ -1,0 +1,266 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreenVideo {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: flex-start; /* ✅ จาก center → ขยับบนสุด */
+  gap: 5vw;
+  padding-top: 6vh; /* ✅ เพิ่ม padding ข้างบน layout ด้วย */
+}
+
+
+
+/* Media Area - Left */
+.mediaBox {
+  flex: 0 0 auto;
+  height: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 100%;
+  max-width: 100%;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+
+.media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info Text - Right */
+.infoBox {
+  flex: 1;
+  margin-left: 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 50%;
+  padding-top: 0; /* ✅ ไม่ต้องเพิ่มระยะห่างอีกที่นี่ */
+  gap: 2rem;
+  animation: fadeSlideIn 1.2s ease-out;
+}
+
+
+.igName {
+  font-size: 9rem;
+  font-weight: 900;
+  color: #fffbe6;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: neonPulse 1.5s infinite alternate, floatUp 1.5s ease-in-out infinite;
+  text-shadow:
+    0 0 6px #fff,
+    0 0 12px #ffcc00,
+    0 0 24px #ffaa00,
+    0 0 40px #ff8800;
+}
+
+
+.caption {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #ffffff;
+  animation: flicker 3s infinite, floatFade 3s ease-in-out infinite;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #aaaaaa,
+    0 0 20px rgba(255,255,255,0.3);
+}
+@keyframes neonPulse {
+  from {
+    text-shadow:
+      0 0 5px #fff000,
+      0 0 10px #ffee00,
+      0 0 20px #ffcc00,
+      0 0 30px #ffaa00;
+  }
+  to {
+    text-shadow:
+      0 0 20px #fff000,
+      0 0 40px #ffee00,
+      0 0 60px #ffcc00,
+      0 0 80px #ffaa00;
+  }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatFade {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-6px);
+    opacity: 0.85;
+  }
+}
+
+
+
+
+/* QR Section - Bottom Right */
+
+
+.qrContent {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap; /* เพิ่มตรงนี้ */
+  max-width: 100%;
+}
+.qrBox {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  padding: 24px 36px;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(16px);
+  border-radius: 80px 0 0 80px;
+  box-shadow: -12px -12px 50px rgba(0, 255, 128, 0.4);
+  z-index: 100;
+  gap: 24px;
+  max-width: 90vw; /* ป้องกันไม่ให้เกินขอบจอ */
+}
+
+.qrText {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #00ffee;
+  background: rgba(0, 0, 0, 0.0); /* ไม่มีพื้นหลังแล้ว */
+  padding: 12px 0;
+  border-radius: 48px;
+  white-space: nowrap; /* ✅ ห้ามขึ้นบรรทัดใหม่ */
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.qrImage {
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 0 40px rgba(0, 255, 128, 0.5);
+}
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #00ffee;
+  animation: typing 3s steps(30, end), blink 0.8s step-end infinite;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #00ffee;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: #00ffee }
+}
+
+
+
+
+
+
+/* Tip Banner Top */
+.tipBanner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding-top: 1rem;
+}
+
+.tipText {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 40px;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  white-space: nowrap;
+  animation-name: slideMarquee;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 3;
+  animation-duration: 10s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.coinImage {
+  width: 48px;
+  height: 48px;
+  animation: spinCoin 1s linear infinite;
+  filter: drop-shadow(0 0 6px gold);
+}
+
+/* Animations */
+@keyframes slideMarquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes spinCoin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}

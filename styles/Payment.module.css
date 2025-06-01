@@ -1,0 +1,67 @@
+.container {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 0 10px #00f0ff, 0 0 30px #00f0ff;
+}
+
+.imagePreview {
+  width: 90%;
+  max-width: 350px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px #00f0ff88, 0 0 40px #00f0ff44;
+}
+
+.qrSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.qrCode {
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.instructions {
+  font-size: 1rem;
+  color: #ccc;
+  text-align: center;
+  max-width: 90%;
+}
+
+.confirmButton {
+  margin-top: 30px;
+  padding: 14px 20px;
+  background-color: #00f0ff;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 16px #00f0ff88, 0 0 32px #00f0ff55;
+  font-size: 1rem;
+}
+
+.confirmButton:hover {
+  background-color: #00d4e5;
+}

@@ -3,21 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.2"
+    "@headlessui/react": "^2.2.4",
+    "@heroui/dropdown": "^2.3.19",
+    "@heroui/system": "^2.4.15",
+    "@heroui/theme": "^2.4.15",
+    "@prisma/client": "^6.8.2",
+    "browser-image-compression": "^2.0.2",
+    "express": "^5.1.0",
+    "firebase": "^11.8.1",
+    "formidable": "^3.5.4",
+    "framer-motion": "^12.12.2",
+    "next": "15.3.2",
+    "promptpay-qr": "^0.5.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-easy-crop": "^5.4.2",
+    "react-icons": "^5.5.0",
+    "react-select": "^5.10.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@netlify/plugin-nextjs": "^5.11.2",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
-    "@eslint/eslintrc": "^3"
+    "prisma": "^6.8.2",
+    "tailwindcss": "^4"
   }
 }
