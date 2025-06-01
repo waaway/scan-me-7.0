@@ -10,7 +10,9 @@ export async function POST(req) {
     return NextResponse.json({ error: 'No file found' }, { status: 400 });
   }
 
-  const blob = await put(file.name, file, {
+ // สร้างชื่อใหม่แบบสุ่มปลอดภัย
+const uniqueName = `${Date.now()}-${file.name}`;
+const blob = await put(uniqueName, file, {
   access: 'public',
   token: process.env.BLOB_READ_WRITE_TOKEN,
 });
