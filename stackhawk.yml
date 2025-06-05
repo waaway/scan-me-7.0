@@ -1,7 +1,4 @@
 app:
-  applicationId: 36944f9e-c594-4091-87aa-3923918ec99e
-  env: Development
-  host: http://localhost:3000
-scan:
-  discovery: true
-  failOn: medium
+  applicationId: 29650426-c307-4791-afe0-11fa61ca1088
+  env: Production
+  host: https://scan-me-7-0.vercel.app
