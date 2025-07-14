@@ -18,7 +18,7 @@
     "express": "^5.1.0",
     "firebase": "^11.8.1",
     "formidable": "^3.5.4",
-    "framer-motion": "^12.12.2",
+    "framer-motion": "^12.18.1",
     "next": "15.3.2",
     "promptpay-qr": "^0.5.0",
     "qrcode": "^1.5.4",
